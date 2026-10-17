@@ -98,9 +98,7 @@ class MMChecker:
                     available_moves.append((row,col,row+2,col+2,row+1,col+1))
                 if 0<=row+1<=7 and 0<=col+1<=7 and self.board[(row+1)*8+(col+1)] == ' ' and (row+col)%2==1:
                     available_moves.append((row,col,(row+1),col+1))
-        capture = [m for m in available_moves if len(m)==6]
-        if capture:
-            return capture
+
         return available_moves
 
     def make_move(self,pos):
