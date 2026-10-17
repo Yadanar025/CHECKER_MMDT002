@@ -51,55 +51,58 @@ class MMChecker:
         available_moves = []
         opponent = PLAYER_BLACK if current_player == PLAYER_WHITE else PLAYER_WHITE
         other_king = KING_BLACK if current_player == PLAYER_WHITE else KING_WHITE
-        for i in range (len(self.board)):
-            row,col = i//8, i%8
-            own_king = KING_WHITE  if current_player == PLAYER_WHITE else KING_BLACK
+        own_king = KING_WHITE if current_player == PLAYER_WHITE else KING_BLACK
+
+        for i in range(len(self.board)):
+            row, col = i // 8, i % 8
             if self.board[i] != current_player and self.board[i] != own_king:
                 continue
 
-            if current_player == "B":
-                if self.board[i]==KING_BLACK and 0<=row+1<=7 and 0<=col-1<=7 and 0<=row+2<=7 and 0<=col-2<=7 and (self.board[(row+1)*8+(col-1)] == opponent or self.board[(row+1)*8+(col-1)] == other_king) and self.board[(row+2)*8+(col-2)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row+2,col-2,row+1,col-1))
-                if self.board[i]==KING_BLACK and 0<=row+1<=7 and 0<=col-1<=7 and self.board[(row+1)*8+(col-1)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,(row+1),col-1))
-
-                if self.board[i]==KING_BLACK and 0<=row+1<=7 and 0<=col+1<=7 and 0<=row+2<=7 and 0<=col+2<=7 and (self.board[(row+1)*8+(col+1)] == opponent or self.board[(row+1)*8+(col+1)] == other_king) and self.board[(row+2)*8+(col+2)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row+2,col+2,row+1,col+1))
-                if self.board[i]==KING_BLACK and 0<=row+1<=7 and 0<=col+1<=7 and self.board[(row+1)*8+(col+1)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,(row+1),col+1))
-
-                if 0<=row-1<=7 and 0<=col-1<=7 and 0<=row-2<=7 and 0<=col-2<=7 and (self.board[(row-1)*8+(col-1)] == opponent or self.board[(row-1)*8+(col-1)] == other_king) and self.board[(row-2)*8+(col-2)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row-2,col-2,row-1,col-1))
-                if 0<=row-1<=7 and 0<=col-1<=7 and self.board[(row-1)*8+(col-1)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row-1,col-1))
-
-                if 0<=row-1<=7 and 0<=col+1<=7 and 0<=row-2<=7 and 0<=col+2<=7 and (self.board[(row-1)*8+(col+1)] == opponent or self.board[(row-1)*8+(col+1)] == other_king) and self.board[(row-2)*8+(col+2)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row-2,col+2,row-1,col+1))
-                if 0<=row-1<=7 and 0<=col+1<=7 and self.board[(row-1)*8+(col+1)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row-1,col+1))
-
-            if current_player == "W":
-                if self.board[i]==KING_WHITE and 0<=row-1<=7 and 0<=col-1<=7 and 0<=row-2<=7 and 0<=col-2<=7 and (self.board[(row-1)*8+(col-1)] == opponent or self.board[(row-1)*8+(col-1)] == other_king) and self.board[(row-2)*8+(col-2)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row-2,col-2,row-1,col-1))
-                if self.board[i]==KING_WHITE and 0<=row-1<=7 and 0<=col-1<=7 and self.board[(row-1)*8+(col-1)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row-1,col-1))
-
-                if self.board[i]==KING_WHITE and 0<=row-1<=7 and 0<=col+1<=7 and 0<=row-2<=7 and 0<=col+2<=7 and (self.board[(row-1)*8+(col+1)] == opponent or self.board[(row-1)*8+(col+1)] == other_king) and self.board[(row-2)*8+(col+2)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row-2,col+2,row-1,col+1))
-                if self.board[i]==KING_WHITE and 0<=row-1<=7 and 0<=col+1<=7 and self.board[(row-1)*8+(col+1)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row-1,col+1))
-
-                if 0<=row+1<=7 and 0<=col-1<=7 and 0<=row+2<=7 and 0<=col-2<=7 and (self.board[(row+1)*8+(col-1)] == opponent or self.board[(row+1)*8+(col-1)] == other_king) and self.board[(row+2)*8+(col-2)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row+2,col-2,row+1,col-1))
-                if 0<=row+1<=7 and 0<=col-1<=7 and self.board[(row+1)*8+(col-1)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,(row+1),col-1))
-
-                if 0<=row+1<=7 and 0<=col+1<=7 and 0<=row+2<=7 and 0<=col+2<=7 and (self.board[(row+1)*8+(col+1)] == opponent or self.board[(row+1)*8+(col+1)] == other_king) and self.board[(row+2)*8+(col+2)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,row+2,col+2,row+1,col+1))
-                if 0<=row+1<=7 and 0<=col+1<=7 and self.board[(row+1)*8+(col+1)] == ' ' and (row+col)%2==1:
-                    available_moves.append((row,col,(row+1),col+1))
+            if self.board[i] == own_king:
+                for dr, dc in [(1, -1), (1, 1), (-1, -1), (-1, 1)]:
+                    step = 1
+                    found_enemy = None
+                    while True:
+                        nr, nc = row + dr * step, col + dc * step
+                        if not (0 <= nr <= 7 and 0 <= nc <= 7):
+                            break
+                        cell = self.board[nr * 8 + nc]
+                        if found_enemy is None:
+                            if cell == ' ':
+                                available_moves.append((row, col, nr, nc))
+                            elif cell == current_player or cell == own_king:
+                                break
+                            else:
+                                found_enemy = (nr, nc)
+                            step += 1
+                        else:
+                            if cell == ' ':
+                                available_moves.append((row, col, nr, nc, found_enemy[0],found_enemy[1]))
+                                step+=1
+                            else:
+                                break
+            else:
+                if current_player == "B":
+                    if 0<=row-1<=7 and 0<=col-1<=7 and 0<=row-2<=7 and 0<=col-2<=7 and self.board[(row-1)*8+(col-1)] == opponent and self.board[(row-2)*8+(col-2)] == ' ' and (row+col)%2==1:
+                        available_moves.append((row,col,row-2,col-2,row-1,col-1))
+                    if 0<=row-1<=7 and 0<=col-1<=7 and self.board[(row-1)*8+(col-1)] == ' ' and (row+col)%2==1:
+                        available_moves.append((row,col,row-1,col-1))
+                    if 0<=row-1<=7 and 0<=col+1<=7 and 0<=row-2<=7 and 0<=col+2<=7 and self.board[(row-1)*8+(col+1)] == opponent and self.board[(row-2)*8+(col+2)] == ' ' and (row+col)%2==1:
+                        available_moves.append((row,col,row-2,col+2,row-1,col+1))
+                    if 0<=row-1<=7 and 0<=col+1<=7 and self.board[(row-1)*8+(col+1)] == ' ' and (row+col)%2==1:
+                        available_moves.append((row,col,row-1,col+1))
+                if current_player == "W":
+                    if 0<=row+1<=7 and 0<=col-1<=7 and 0<=row+2<=7 and 0<=col-2<=7 and self.board[(row+1)*8+(col-1)] == opponent and self.board[(row+2)*8+(col-2)] == ' ' and (row+col)%2==1:
+                        available_moves.append((row,col,row+2,col-2,row+1,col-1))
+                    if 0<=row+1<=7 and 0<=col-1<=7 and self.board[(row+1)*8+(col-1)] == ' ' and (row+col)%2==1:
+                        available_moves.append((row,col,(row+1),col-1))
+                    if 0<=row+1<=7 and 0<=col+1<=7 and 0<=row+2<=7 and 0<=col+2<=7 and self.board[(row+1)*8+(col+1)] == opponent and self.board[(row+2)*8+(col+2)] == ' ' and (row+col)%2==1:
+                        available_moves.append((row,col,row+2,col+2,row+1,col+1))
+                    if 0<=row+1<=7 and 0<=col+1<=7 and self.board[(row+1)*8+(col+1)] == ' ' and (row+col)%2==1:
+                        available_moves.append((row,col,(row+1),col+1))
 
         return available_moves
+
 
     def make_move(self,pos):
         """
