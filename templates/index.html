@@ -116,7 +116,11 @@
                 el.textContent = "";
                 if (sym && sym !== " ") {
                     el.classList.add("piece-" + sym);
+                    if (sym === "KW" || sym === "KB") {
+                        el.textContent = "♛";
+                    }
                 }
+
                 if (selected && selected[0] === row && selected[1] === col) {
                     el.classList.add("selected");
                 }
