@@ -88,9 +88,8 @@
         let selected = null;
 
         function cellEl(row, col) {
-            return 
-    boardEl.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-    }
+            return boardEl.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+        }
 
     function buildGrid() {
         boardEl.innerHTML = "";
