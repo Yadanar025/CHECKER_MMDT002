@@ -43,7 +43,7 @@
 ## Section 4: Deployed and Presentation Information
 - **Deployment Platform:**  Render
 - **Live Deployment URL:** https://checker-mmdt002.onrender.com
-- **Video Presentation Link:** [Provide an accessible link to your 5–7 minute video presentation]
+- **Video Presentation Link:** https://drive.google.com/file/d/18e1X27YrUYgvbRZ8wajwU20z_SOfQCru/view?usp=sharing
 
 ---
 
